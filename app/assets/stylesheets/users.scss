@@ -1,0 +1,128 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/*** index.html.erb ***/
+.member_search{
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.member_search th{
+  width: 150px; }
+
+.member_search td{
+  width: auto;
+  padding-bottom: 15px; }
+
+.member_search_btn{
+  text-align: center;
+  margin: 10px 0 30px 0; }
+
+.member_search_btn input{
+  width: 100px; }
+
+.member_search_result{
+  padding-top: 30px; }
+
+.member_search_result thead th{
+  padding: 0 0 5px 5px;
+  border-bottom: 1px solid #d3d3d3; }
+
+.member_search_result tbody td{
+  padding: 5px 0 0 5px;
+  border-bottom: 1px dotted #d3d3d3; }
+
+/*** new.html.erb ***/
+.newuser_content{
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #CCCCCC; }
+
+.newuser_item{
+  padding: 30px 30px 0 30px; }
+
+.newuser_item input{
+  width: 100%; }
+
+.register_btn{
+  text-align: center;
+  padding: 50px 0 }
+
+
+/*** show.html.erb ***/
+.edit_porfile_btn {
+  text-align: center;
+  margin-top: 30px; }
+
+.bookmark_content{
+  margin-top: 50px; }
+
+.edit_profile_return_member_btn{
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #CCCCCC; }
+
+/*** form ***/
+
+/* 2カラム */
+.left_contents{
+  width: 50%;
+  float: left; }
+
+.right_content{
+  width: 50%;
+  float: right; }
+
+.crearfix::after{
+  content: "";
+  clear: both;
+  display: block; }
+
+/* 各項目 */
+.profile_item{
+  padding-bottom: 15px; }
+
+.profile_img_area{
+  margin-left: 10px;
+  width: 80%;
+  height: 225px;
+  border: 1px dotted #CCCCCC;
+  text-align: center; }
+
+.profile_img_area img{
+  height: 225px;
+  padding: 10px; }
+
+.profile_img_area_gap{
+  margin-bottom: 40px; }
+
+.profile_img_change{
+  margin: 10px 0 0 10px; }
+
+.profile_item table td{
+  padding-bottom: 15px; }
+
+.profile_item input{
+  width: 90%; }
+
+.profile_item textarea{
+  width: 100%;
+  height: 300px; }
+
+.profile_textrea{
+  height: 225px;
+  border: 1px dotted #CCCCCC;
+  margin-bottom: 40px; }
+
+.profile_textrea p{
+  padding-left: 10px;
+}
+
+.user_submit_btn{
+  text-align: center;
+  padding-top: 15px;
+  margin-top: 30px;
+  border-top: 1px dotted #CCCCCC; }

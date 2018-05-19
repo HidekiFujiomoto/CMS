@@ -1,0 +1,53 @@
+
+
+<body>
+  <div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+
+        <!--- GlobalNavi --->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gnavi">
+            <!--- ハンバーガーメニュー --->
+            <span class="sr-only">Community Management System</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "Community Management System", user_path(current_user.id), class: "navbar-brand" %>
+        </div>
+        <!--- GlobalNavi[PC] --->
+        <div id="gnavi" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/users">メンバー検索</a></li>
+            <li><a href="/posts">掲示板</a></li>
+            <li><a href="/contacts">メッセージ</a></li>
+            <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+          </ul>
+        </div>
+      </div>  <!--- /container-fluid --->
+    </nav>
+
+    <div class="content">
+      <div class="main_content">
+
+        <!--- PageTitle --->
+        <div class="page_title">
+          <h3>投稿編集</h3>
+        </div>
+
+        <div>
+          <%= render "form" %>
+        </div>
+
+      </div> <!-- /main_content --->
+    </div> <!-- /content -->
+
+    <footer class="footer">
+      <p>Hideki Fujimoto test application</p>
+    </footer>
+
+  </div> <!--- /container --->
+</body>

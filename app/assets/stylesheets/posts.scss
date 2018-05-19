@@ -1,0 +1,56 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*** 共通 ***/
+.return_post{
+  padding-top: 15px;
+  margin-top: 100px;
+  border-top: 1px dotted #CCCCCC;
+  text-align: center; }
+
+
+
+/*** index.html.erb ***/
+
+/* post_index */
+.main_content table{
+  table-layout: auto;
+  width:100%;
+  border-collapse: collapse; }
+
+.post_content td{
+  background-color: #fff;
+  padding: 5px 15px; }
+
+.post_title td{
+  font-weight: bold; }
+
+.post_btn td{
+  padding-bottom: 15px; }
+
+/* new_post_btn */
+.new_post_btn {
+  text-align: center;
+  margin-top: 30px; }
+
+
+
+/*** form ***/
+.post_item{
+  padding-bottom: 30px; }
+
+.submit_btn{
+  margin-top: 30px; }
+
+
+
+/*** confirm.html.erb ***/
+.post_confirm_item{
+  padding-bottom: 30px; }
+
+.retrun_post_btn{
+  text-align: center;
+  padding-top: 15px;
+  margin-top: 30px;
+  border-top: 1px dotted #CCCCCC; }

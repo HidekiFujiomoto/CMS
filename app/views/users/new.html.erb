@@ -1,0 +1,69 @@
+
+
+<body>
+  <div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Community Management System</a>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="content">
+      <div class="main_content">
+
+        <!--- PageTitle --->
+        <div class="page_title">
+          <h3>新規ユーザー登録</h3>
+        </div>
+
+        <div>
+          <% if @user.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+              <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                  <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="newuser_content">
+          <%= form_with(model: @user, local: true) do |f| %>
+            <div class="newuser_item">
+              <%= f.label :name %><br>
+              <%= f.text_field :user_name %>
+            </div>
+            <div class="newuser_item">
+              <%= f.label :email %><br>
+              <%= f.email_field :user_email %>
+            </div>
+            <div class="newuser_item">
+              <%= f.label :password %><br>
+              <%= f.password_field :password %>
+            </div>
+            <div class="newuser_item">
+              <%= f.label :password_confirmation %>
+              <%= f.password_field :password_confirmation %>
+            </div>
+            <div class="register_btn">
+              <%= f.submit "新規ユーザー登録する",class: "btn btn-default" %>
+            </div>
+          <% end %>
+
+        </div>
+
+      </div> <!-- /main_content --->
+    </div> <!-- /content -->
+
+    <footer class="footer">
+      <p>Hideki Fujimoto test application</p>
+    </footer>
+
+  </div> <!--- /container --->
+</body>

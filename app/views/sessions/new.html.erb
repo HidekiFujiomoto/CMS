@@ -1,0 +1,47 @@
+
+<body>
+  <div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Community Management System</a>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="content">
+      <div class="main_content">
+
+        <!--- PageTitle --->
+        <div class="page_title">
+          <h3>ログイン</h3>
+        </div>
+
+        <div class="session_content">
+          <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+            <div class="session_item">
+              <%= f.label :email %><br>
+              <%= f.email_field :user_email %>
+            </div>
+            <div class="session_item">
+              <%= f.label :password %><br>
+              <%= f.password_field :password %>
+            </div>
+            <div class="login_btn">
+              <%= f.submit "ログインする",class: "btn btn-default" %>
+            </div>
+          <% end %>
+
+        </div>
+
+      </div> <!-- /main_content --->
+    </div> <!-- /content -->
+
+    <footer class="footer">
+      <p>Hideki Fujimoto test application</p>
+    </footer>
+
+  </div> <!--- /container --->
+</body>

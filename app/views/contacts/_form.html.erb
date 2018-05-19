@@ -1,0 +1,30 @@
+<%= form_with(model: contact, local: true, url: confirm_contacts_path) do |form| %>
+  <% if contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+      <% contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="contact_form">
+    <div class="contact_content">
+      <%= form.label "問い合わせ先" %>
+      <p><%= @contact.user_name %>さん</p> <!--- コントローラーで代入値変更！！ --->
+    </div>
+
+    <div class="contact_content">
+      <%= form.label "問い合わせ内容" %>
+      <%= form.text_area :contact_content %>
+    </div>
+  </div>
+
+
+  <div class="contact_confirm">
+    <%= form.submit "送信確認", class:"btn" %>
+  </div>
+<% end %>

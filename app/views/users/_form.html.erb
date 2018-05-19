@@ -1,0 +1,81 @@
+<%= form_with(model: @user, local: true, url: user_path(current_user.id)) do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @user.errors.count %>件のエラーがあります。</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+
+<!--- プロフィール --->
+<div class="porfile_content clearfix">
+  <div class="sub_titile">
+    <p>プロフィール</p>
+  </div>
+  <!--- プロフィール左カラム --->
+  <div class="left_contents">
+    <div class="profile_item">
+      <%= form.label "プロフィール画像" %><br>
+      <div class="profile_img_area">
+        <%= image_tag @user.user_icon %>
+      </div>
+      <div class="profile_img_change">
+        <p>↓画像を変更する
+        <%= form.file_field :user_icon %></p>
+        <%= form.hidden_field :user_icon_cache %>
+      </div>
+    </div>
+    <div class="profile_item">
+      <%= form.label "ユーザー名" %><br>
+      <%= @user.user_name %>
+    </div>
+    <div class="profile_item">
+      <%= form.label "メールアドレス" %><br>
+      <%= @user.user_email %>
+    </div>
+    <div class="profile_item">
+      <%= form.label "居住地" %><br>
+      <%= form.text_field :user_address %>
+    </div>
+    <div class="profile_item">
+      <%= form.label "SNSアカウント" %>
+      <table>
+        <tr><td>・Twitter</td><td>：</td>
+          <td><%= form.text_field :twitter %></td>
+        </tr>
+        <tr><td>・Facebook</td><td>：</td>
+          <td><%= form.text_field :facebook %></td>
+        </tr>
+        <tr><td>・Instagram</td><td>：</td>
+          <td><%= form.text_field :instagram %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!--- プロフィール右カラム --->
+  <div class="right_content">
+    <div class="profile_item">
+      <%= form.label "スキル" %><br>
+      <%= form.text_area :skill %>
+    </div>
+    <div class="profile_item">
+      <%= form.label "趣味、特技" %><br>
+      <%= form.text_area :hobby %>
+    </div>
+  </div>
+
+</div> <!--- /porfile_content --->
+
+<!--- crearfix --->
+
+<div class="user_submit_btn">
+  <%= form.submit :class=>"btn" %>
+</div>
+<% end %>

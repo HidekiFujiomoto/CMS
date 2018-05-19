@@ -1,0 +1,78 @@
+<body>
+  <div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+
+        <!--- GlobalNavi --->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gnavi">
+            <!--- ハンバーガーメニュー --->
+            <span class="sr-only">Community Management System</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "Community Management System", top_path, class: "navbar-brand" %>
+        </div>
+        <!--- GlobalNavi[PC] --->
+        <div id="gnavi" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">メンバー検索</a></li>
+            <li><a href="/posts">掲示板</a></li>
+            <li><a href="/contacts">メッセージ</a></li>
+            <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+          </ul>
+        </div>
+      </div>  <!--- /container-fluid --->
+    </nav>
+
+
+    <div class="content">
+      <div class="main_content">
+
+        <!--- PageTitle --->
+        <div class="page_title">
+          <h3>以下内容で送信しますか？</h3>
+        </div>
+
+        <div class="contact_form">
+          <%= form_with(model: @contact, url: contacts_path, local: true) do |form| %>
+            <%= form.hidden_field :contact_user_name %>
+            <%= form.hidden_field :contact_content %>
+
+            <div class="contact_content">
+              <label>問い合わせ先</label>
+              <p><%= @contact.contact_user_name %></p>
+            </div>
+            <div class="contact_content">
+              <label>問い合わせ内容</label>
+              <p><%= simple_format(@contact.contact_content) %></p>
+            </div>
+
+            <div class="contact_send_btn">
+              <%= form.submit  "送信する", :class=>"btn" %>
+            </div>
+          <% end %>
+
+          <!--- "もどる"ときは入力した値を保持 --->
+          <%= form_with(model: @contact, url: new_contact_path, local: true, method: 'get') do |form| %>
+            <%= form.hidden_field :contact_user_name %>
+            <%= form.hidden_field :contact_content %>
+            <div class="retrun_post_btn">
+              <%= form.submit "もどる", name: "back", :class=>"btn" %>
+            </div>
+          <% end %>
+        </div>
+
+
+      </div> <!-- /main_content --->
+    </div> <!-- /content -->
+
+    <footer class="footer">
+      <p>Hideki Fujimoto test application</p>
+    </footer>
+
+  </div> <!--- /container --->
+</body>

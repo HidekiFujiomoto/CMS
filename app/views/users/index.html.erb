@@ -1,0 +1,106 @@
+
+
+<body>
+  <div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+
+        <!--- GlobalNavi --->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gnavi">
+            <!--- ハンバーガーメニュー --->
+            <span class="sr-only">Community Management System</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "Community Management System", top_path, class: "navbar-brand" %>
+        </div>
+        <!--- GlobalNavi[PC] --->
+        <div id="gnavi" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">メンバー検索</a></li>
+            <li><a href="/posts">掲示板</a></li>
+            <li><a href="/contacts">メッセージ</a></li>
+            <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+          </ul>
+        </div>
+      </div>  <!--- /container-fluid --->
+    </nav>
+
+    <div class="content">
+      <div class="main_content">
+
+        <!--- PageTitle --->
+        <div class="page_title">
+          <h3>メンバー検索</h3>
+        </div>
+        <!--- 検索フォーム --->
+        <div class="member_search">
+          <table>
+          <%= search_form_for @q do |form| %>
+            <div><tr>
+              <th><%= form.label "①. ユーザー名" %></th>
+              <td><%= form.search_field :user_name_cont %></td></tr>
+            </div>
+            <div><tr>
+              <th><%= form.label "②. 居住地" %></th>
+              <td><%= form.search_field :user_address_cont %></td></tr>
+            </div>
+            <div><tr>
+              <th><%= form.label "③. 専門スキル" %></th>
+              <td><%= form.search_field :professional %></td></tr> <!--- radio buttonで設定 --->
+            </div>
+            <div><tr>
+              <th><%= form.label "④. スキル" %></th>
+              <td><%= form.search_field :skill_cont %></td></tr>
+            </div>
+            <div><tr>
+              <th><%= form.label "⑤. 趣味、特技" %></th>
+              <td><%= form.search_field :hobby_cont %></td></tr>
+            </div>
+          </table>
+          <div class="member_search_btn">
+            <%= form.submit "検索", class:"btn" %>
+          </div>
+          <% end %>
+        </div> <!--- /member_search --->
+
+        <!--- 検索結果表示 --->
+        <div class="member_search_result">
+            <table>
+              <thead>
+                <tr>
+                  <th><%= sort_link(@q,:id,"ID", hide_indicator: true) %></th>
+                  <th><%= sort_link(@q,:id,"ユーザー名", hide_indicator: true) %></th>
+                  <th><%= sort_link(@q,:id,"居住地", hide_indicator: true) %></th>
+                  <th><%= sort_link(@q,:id,"専門スキル", hide_indicator: true) %></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @users.each do |user| %>
+                <% next if user.id == current_user.id %>
+                <tr>
+                  <td><%= user.id %></td>
+                  <td><%= user.user_name %></td>
+                  <td><%= user.user_address %></td>
+                  <td><%= user.professional %></td>
+                  <td><%= link_to "詳細を見る", user_path(user.id) %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div> <!--- /member_search_result --->
+
+      </div> <!-- /main_content --->
+    </div> <!-- /content -->
+
+    <footer class="footer">
+      <p>Hideki Fujimoto test application</p>
+    </footer>
+
+  </div> <!--- /container --->
+</body>

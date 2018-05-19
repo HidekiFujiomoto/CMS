@@ -1,0 +1,43 @@
+// Place all the styles related to the Contacts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+/*** form ***/
+.contact_form{
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.contact_content{
+  margin-bottom: 30px; }
+
+.contact_content textarea{
+  width: 100%;
+  height: 150px; }
+
+.contact_confirm{
+  text-align: center;
+  border-bottom: 1px dotted #CCCCCC;
+  padding-bottom: 50px;
+  margin-bottom: 15px; }
+
+
+/*** index ***/
+.message_index thead th{
+  padding: 0 0 5px 5px;
+  border-bottom: 1px solid #d3d3d3; }
+
+.message_index tbody td{
+  padding: 5px 0 0 5px;
+  border-bottom: 1px dotted #d3d3d3; }
+
+/*** new ***/
+.return_member_search_btn{
+  text-align: center; }
+
+/*** confirm ****/
+.contact_send_btn{
+  text-align: center; }

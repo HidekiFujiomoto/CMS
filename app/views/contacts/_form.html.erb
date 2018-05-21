@@ -14,7 +14,9 @@
   <div class="contact_form">
     <div class="contact_content">
       <%= form.label "問い合わせ先" %>
-      <p><%= @contact.user_name %>さん</p> <!--- コントローラーで代入値変更！！ --->
+      <p><%= @contact.contact_user_name %>さん</p>
+      <%= form.label "送信先アドレス（あとで消す！）" %>
+      <p><%= @contact.contact_user_email %>さん</p>
     </div>
 
     <div class="contact_content">

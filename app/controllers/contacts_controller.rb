@@ -18,6 +18,9 @@ class ContactsController < ApplicationController
       @contact = Contact.new(contact_params)
     else
       @contact = Contact.new
+      @user = User.find(params[:user])
+      @contact.contact_user_name = @user.user_name
+      @contact.contact_user_email = @user.user_email
     end
   end
 
@@ -29,7 +32,6 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
-
     if @contact.save
       redirect_to contacts_path, notice:"メッセージを送信しました！"
     else

@@ -107,7 +107,7 @@
           <% if @user.id == current_user.id %>
             <%= link_to 'マイページを編集する', edit_user_path(@user.id) ,class: "btn btn-default" %>
           <% else %>
-            <%= link_to 'このメンバーへ問い合わせる', new_contact_path,class: "btn btn-default" %>
+            <%= link_to 'このメンバーへ問い合わせる', new_contact_path(user: @user),class: "btn btn-default" %>
             <div class="edit_profile_return_member_btn">
               <%= link_to 'メンバー検索へ戻る', users_path %>
             </div>

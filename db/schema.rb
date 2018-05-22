@@ -61,9 +61,6 @@ ActiveRecord::Schema.define(version: 20180522072634) do
     t.string "facebook"
   end
 
-  create_table "sessions", force: :cascade do |t|
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "user_name"
     t.string "user_email"
@@ -78,6 +75,8 @@ ActiveRecord::Schema.define(version: 20180522072634) do
     t.string "user_fb_msg"
     t.string "password_digest"
     t.string "favorite_user"
+    t.string "uid"
+    t.string "provider"
     t.index ["user_email"], name: "index_users_on_user_email", unique: true
   end
 

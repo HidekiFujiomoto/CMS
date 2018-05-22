@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  get 'top', to: 'users#top'
 
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:index, :new, :create, :destroy]
+  root to:'sessions#index'
 
   resources :bookmarks, only: [:create, :destroy]
 
@@ -20,5 +20,13 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
+
+  resources :tops, only: [:index]
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
+
 
 end

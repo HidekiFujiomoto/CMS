@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
 
+  def index
+    render :layout => "second_layout"
+  end
+
   def new
   end
 
@@ -7,7 +11,7 @@ class SessionsController < ApplicationController
     user = User.find_by(user_email: params[:session][:user_email].downcase)
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to users_path
+      redirect_to tops_path
     else
       flash[:danger] = 'ログインに失敗しました'
       render 'new'

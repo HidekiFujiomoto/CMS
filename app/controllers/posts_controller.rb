@@ -12,6 +12,7 @@ class PostsController < ApplicationController
       @post.post_image_1.retrieve_from_cache! params[:cache][:post_image_1]
     else
       @post = Post.new
+      @post.post_user_name = current_user.user_name
     end
   end
 
@@ -50,6 +51,7 @@ class PostsController < ApplicationController
   def confirm
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    @post.post_user_name = current_user.user_name
     # binding.pry
     render :new if @post.invalid?
   end

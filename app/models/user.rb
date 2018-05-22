@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+
+  # バリデーションの設定
   validates :user_name,
     presence: true, length:  { maximum: 255 }
   validates :user_address,
@@ -15,10 +18,11 @@ class User < ApplicationRecord
     length:  { maximum: 255 }
 
   ### パスワードのバリデーション設定
-  validates :password,
+  validates :password_digest,
     presence: true, length:  { minimum: 6 }, on: :create
-  validates :password,
+  validates :password_digest,
     presence: true, length:  { minimum: 6 }, on: :update, allow_blank: true
+
   # パスワードをハッシュ化
   has_secure_password
 
@@ -35,9 +39,6 @@ class User < ApplicationRecord
   # アソシエーション設定：一対多の一側（vs bookmarks）
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_posts, through: :bookmarks, source: :post
-
-  # アソシエーション設定：一対多の一側（vs contact）
-  has_many :contact, dependent: :destroy
 
   # ImageUploaderの紐付け
   mount_uploader :user_icon, ImageUploader

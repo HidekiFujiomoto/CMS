@@ -16,7 +16,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%= link_to "Community Management System", user_path(current_user.id), class: "navbar-brand" %>
+          <%= link_to "Community Management System", tops_path, class: "navbar-brand" %>
         </div>
         <!--- GlobalNavi[PC] --->
         <div id="gnavi" class="collapse navbar-collapse">
@@ -35,18 +35,37 @@
 
         <!--- PageTitle --->
         <div class="page_title">
-          <h3>投稿詳細画面</h3>
+          <h3>投稿詳細</h3>
         </div>
 
-        <div class="post_index">
-          <label>タイトル</label>
-          <p><%= @post.post_title %></p>
-          <label>内容</label>
-          <p><%= @post.post_content %></p>
-          <label>画像1</label>
-          <p><%= image_tag @post.post_image_1 %></p>
-          <p>Bootstrapで３画像表示したい!!!!</p>
-        </div>
+        <div>
+          <div class="post_item post_title row">
+            <p><span class="bold">投稿者：</span>
+              <%= @post.post_user_name %></p>
+            <p><span class="bold">タイトル：</span>
+              <%= @post.post_title %></p>
+          </div>
+          <div class="post_item row">
+            <p><span class="bold">投稿内容</span></p>
+            <%= simple_format(@post.post_content) %>
+          </div>
+
+          <div class="post_item row">
+            <p><span class="bold">画像ファイル</span></p>
+              <div class="post_img col-md-4">
+                <p>画像1</p>
+                <%= image_tag @post.post_image_1 %>
+              </div>
+              <div class="post_img col-md-4">
+                <p>画像2</p>
+                <%= image_tag @post.post_image_2 %>
+              </div>
+              <div class="post_img col-md-4">
+                <p>画像3</p>
+                <%= image_tag @post.post_image_3 %>
+              </div>
+            </div> <!--- /post_item --->
+          </div> <!--- /post_new_index --->
 
         <div class="bookmark_content">
           <% unless @post.user_id.to_s == current_user.id %>
@@ -60,7 +79,7 @@
           <% end %> <!--- /unless @post.user_id.to_s == current_user.id --->
         </div>
 
-        <div class="return_post">
+        <div class="return_post font-blue">
           <%= link_to '掲示板に戻る', posts_path %>
         </div>
 

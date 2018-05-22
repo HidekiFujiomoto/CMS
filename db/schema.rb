@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180518075549) do
+ActiveRecord::Schema.define(version: 20180522072634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20180518075549) do
     t.string "contact_user_name"
     t.string "contact_user_email"
     t.string "contact_user_fbmsg"
+    t.string "contact_img"
+    t.text "timestamps"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -59,6 +61,9 @@ ActiveRecord::Schema.define(version: 20180518075549) do
     t.string "facebook"
   end
 
+  create_table "sessions", force: :cascade do |t|
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "user_name"
     t.string "user_email"
@@ -72,6 +77,7 @@ ActiveRecord::Schema.define(version: 20180518075549) do
     t.text "hobby"
     t.string "user_fb_msg"
     t.string "password_digest"
+    t.string "favorite_user"
     t.index ["user_email"], name: "index_users_on_user_email", unique: true
   end
 

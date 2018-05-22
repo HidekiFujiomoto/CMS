@@ -16,7 +16,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%= link_to "Community Management System", user_path(current_user.id), class: "navbar-brand" %>
+          <%= link_to "Community Management System", tops_path, class: "navbar-brand" %>
         </div>
         <!--- GlobalNavi[PC] --->
         <div id="gnavi" class="collapse navbar-collapse">
@@ -40,33 +40,59 @@
 
         <div>
           <%= form_with(model: @post, url: posts_path, local: true) do |form| %>
+            <%= form.hidden_field :post_user_name %>
             <%= form.hidden_field :post_title %>
             <%= form.hidden_field :post_content %>
 
-            <div class="post_confirm_item">
-              <label>タイトル</label>
-              <p><%= @post.post_title %></p>
-            </div>
-            <div class="post_confirm_item">
-              <label>本文</label>
-              <p><%= @post.post_content %></p>
-            </div>
-            <div class="post_confirm_item">
-              <label>画像1</label>
-              <p><%= image_tag @post.post_image_1 %></p>
-              <%= hidden_field_tag :"cache[post_image_1]",@post.post_image_1.cache_name %>
-            </div>
-            <div class="submit_btn">
-              <%= form.submit  "投稿する", :class=>"btn" %>
-            </div>
-          <% end %>
+
+            <div class="post_new_inde">
+              <div class="post_item post_title row">
+                <p><span class="bold">投稿者：</span>
+                  <%= @post.post_user_name %></p>
+                <p><span class="bold">タイトル：</span>
+                  <%= @post.post_title %></p>
+              </div>
+              <div class="post_item row">
+                <%= form.label "投稿内容" %>
+                <%= simple_format(@post.post_content) %>
+              </div>
+
+              <div class="post_item post_img_field row">
+                <%= form.label "画像ファイル" %>
+                  <div class="post_img col-md-4">
+                    <p>画像1</p>
+                    <%= image_tag @post.post_image_1 %>
+                  </div>
+                  <div class="post_img col-md-4">
+                    <p>画像2</p>
+                    <%= image_tag @post.post_image_2 %>
+                  </div>
+                  <div class="post_img col-md-4">
+                    <p>画像3</p>
+                    <%= image_tag @post.post_image_3 %>
+                  </div>
+                  <%= hidden_field_tag :"cache[post_image_1]",@post.post_image_1.cache_name %>
+                  <%= hidden_field_tag :"cache[post_image_2]",@post.post_image_2.cache_name %>
+                  <%= hidden_field_tag :"cache[post_image_3]",@post.post_image_3.cache_name %>
+                </div>
+              </div> <!--- /post_item --->
+
+              <div class="post_submit_btn">
+                <%= form.submit  "投稿する", :class=>"btn" %>
+              </div>
+            <% end %>
+
 
           <%= form_with(model: @post, url: new_post_path, local: true, method: 'get') do |form| %>
+            <%= form.hidden_field :post_user_name %>
             <%= form.hidden_field :post_title %>
             <%= form.hidden_field :post_content %>
             <%= hidden_field_tag :"cache[post_image_1]",@post.post_image_1.cache_name %>
+            <%= hidden_field_tag :"cache[post_image_2]",@post.post_image_2.cache_name %>
+            <%= hidden_field_tag :"cache[post_image_3]",@post.post_image_3.cache_name %>
+
             <div class="retrun_post_btn">
-              <%= form.submit "もどる", name: "back", :class=>"btn" %>
+              <%= form.submit "新規投稿へもどる", name: "back",:class=>"btn" %>
             </div>
           <% end %>
         </div>

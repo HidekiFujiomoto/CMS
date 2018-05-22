@@ -35,6 +35,10 @@ gem 'dotenv-rails'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'ransack'
+gem 'letter_opener_web'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

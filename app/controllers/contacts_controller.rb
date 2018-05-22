@@ -1,14 +1,12 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
-  # GET /contacts
-  # GET /contacts.json
+
   def index
-    @contacts = Contact.all
+    @contacts = Contact.all.reverse_order
   end
 
-  # GET /contacts/1
-  # GET /contacts/1.json
+
   def show
   end
 
@@ -16,69 +14,61 @@ class ContactsController < ApplicationController
   def new
     if params[:back]
       @contact = Contact.new(contact_params)
+      @contact.contact_img.retrieve_from_cache! params[:cache][:contact_img]
     else
       @contact = Contact.new
       @user = User.find(params[:user])
       @contact.contact_user_name = @user.user_name
       @contact.contact_user_email = @user.user_email
+      @contact.user_name = current_user.user_name
     end
   end
 
-  # GET /contacts/1/edit
   def edit
   end
 
-  # POST /contacts
-  # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
+    @contact.user_id = current_user.id
     if @contact.save
       redirect_to contacts_path, notice:"メッセージを送信しました！"
+      @user_email = @contact.contact_user_email
+      CMSMailer.send_email(@user_email).deliver
     else
       render "new"
     end
 
   end
 
-  # PATCH/PUT /contacts/1
-  # PATCH/PUT /contacts/1.json
   def update
-    respond_to do |format|
-      if @contact.update(contact_params)
-        format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
-        format.json { render :show, status: :ok, location: @contact }
-      else
-        format.html { render :edit }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
-      end
+    @contact.user_id = current_user.id
+    if @contact.update(contact_params)
+      redirect_to contacts_path, notice: "メッセージを送信しました！"
+    else
+      render "new"
     end
   end
 
-  # DELETE /contacts/1
-  # DELETE /contacts/1.json
   def destroy
     @contact.destroy
-    respond_to do |format|
-      format.html { redirect_to contacts_url, notice: 'Contact was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to contacts_path, notice:"メッセージを削除しました！"
   end
 
   def confirm
     @contact = Contact.new(contact_params)
+    @contact.user_id = current_user.id
   end
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_contact
       @contact = Contact.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
       params.fetch(:contact, {})
       params.require(:contact).permit(:user_id,:user_name, :contact_content,
-        :contact_user_id,:contact_user_name,:contact_user_email,:contact_user_fbmsg)
+        :contact_user_id,:contact_user_name,:contact_user_email,
+        :contact_user_fbmsg,:contact_img,:contact_img_cache)
     end
 end

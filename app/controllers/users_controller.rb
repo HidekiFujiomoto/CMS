@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   def index
     @q = User.ransack(params[:q])
     @q.sorts = 'id asc' if @q.sorts.empty?
-    @users = @q.result(distinct: true)
+    @users_result = @q.result(distinct: true)
+    @users = User.all
   end
 
   def new
@@ -14,16 +15,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_path(@user.id)
+      session[:user_id] = @user.id
+      redirect_to tops_path(current_user.id)
+      binding.pry
     else
       render "new"
     end
   end
 
   def show
-  end
-
-  def top
   end
 
   def edit
@@ -43,8 +43,8 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:user_id,:user_name,:user_email,
       :user_address,:user_icon,:facebook,:twitter,:instagram,
-      :professional,:skill,:hobby,:user_fb_msg,:password_digest,
-      :password_digest_confirmation)
+      :professional,:skill,:hobby,:user_fb_msg,:password,
+      :password_confirmation)
   end
 
   def set_user

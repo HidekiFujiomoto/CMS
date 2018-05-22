@@ -14,12 +14,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%= link_to "Community Management System", top_path, class: "navbar-brand" %>
+          <%= link_to "Community Management System", tops_path, class: "navbar-brand" %>
         </div>
         <!--- GlobalNavi[PC] --->
         <div id="gnavi" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#">メンバー検索</a></li>
+            <li><a href="/users">メンバー検索</a></li>
             <li><a href="/posts">掲示板</a></li>
             <li><a href="/contacts">メッセージ</a></li>
             <li><%= link_to "マイページ", user_path(current_user.id) %></li>
@@ -41,14 +41,20 @@
           <%= form_with(model: @contact, url: contacts_path, local: true) do |form| %>
             <%= form.hidden_field :contact_user_name %>
             <%= form.hidden_field :contact_content %>
+            <%= form.hidden_field :user_name %>
 
             <div class="contact_content">
               <label>問い合わせ先</label>
-              <p><%= @contact.user_name %></p>
+              <p><%= @contact.contact_user_name %></p>
             </div>
             <div class="contact_content">
               <label>問い合わせ内容</label>
               <p><%= simple_format(@contact.contact_content) %></p>
+            </div>
+            <div class="contact_content">
+              <label>添付ファイル</label>
+              <p><%= image_tag @contact.contact_img %></p>
+              <%= hidden_field_tag :"cache[contact_img]",@contact.contact_img.cache_name %>
             </div>
 
             <div class="contact_send_btn">

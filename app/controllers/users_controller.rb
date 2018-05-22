@@ -17,7 +17,6 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       redirect_to tops_path(current_user.id)
-      binding.pry
     else
       render "new"
     end

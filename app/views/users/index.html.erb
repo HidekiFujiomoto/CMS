@@ -44,8 +44,8 @@
         </div>
         <!--- 検索フォーム --->
         <div class="member_search">
-          <table>
           <%= search_form_for @q do |form| %>
+          <table>
             <div><tr>
               <th><%= form.label "①. ユーザー名" %></th>
               <td><%= form.search_field :user_name_cont %></td></tr>

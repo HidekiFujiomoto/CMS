@@ -14,7 +14,6 @@ class ContactsController < ApplicationController
   def new
     if params[:back]
       @contact = Contact.new(contact_params)
-      @contact.contact_img.retrieve_from_cache! params[:cache][:contact_img]
     else
       @contact = Contact.new
       @user = User.find(params[:user])

@@ -5,7 +5,6 @@ class UsersController < ApplicationController
     @q = User.ransack(params[:q])
     @q.sorts = 'id asc' if @q.sorts.empty?
     @users_result = @q.result(distinct: true)
-    @users = User.all
   end
 
   def new

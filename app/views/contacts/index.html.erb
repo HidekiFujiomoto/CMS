@@ -64,15 +64,17 @@
 
             <tbody>
               <% @contacts.each do |contact| %>
-              <% next if contact.user_name == current_user.user_name %>
-              <tr>
-                <td><%= contact.id %></td>
-                <td><%= contact.user_name %></td>
-                <td><%= contact.contact_user_name %>さん</td>
-                <td><%= contact.contact_content %></td>
-                <td><%= link_to '詳細を見る', contact %></td>
-                <td><%= link_to '削除', contact, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></td>
-              </tr>
+              <% if contact.contact_user_name == current_user.user_name %>
+                <tr>
+                  <td><%= contact.id %></td>
+                  <td><%= contact.user_name %></td>
+                  <td><%= contact.contact_user_name %>さん</td>
+                  <td><%= contact.contact_content %></td>
+                  <td><%= link_to '詳細を見る', contact %></td>
+                  <td><%= link_to '削除', contact, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></td>
+                </tr>
+              <% else %>
+              <% end %>
               <% end %>
             </tbody>
           </table>
@@ -96,15 +98,17 @@
 
             <tbody>
               <% @contacts.each do |contact| %>
-              <% next if contact.contact_user_name == current_user.user_name %>
-              <tr>
-                <td><%= contact.id %></td>
-                <td><%= contact.user_name %></td>
-                <td><%= contact.contact_user_name %>さん</td>
-                <td><%= contact.contact_content %></td>
-                <td><%= link_to '詳細を見る', contact %></td>
-                <td><%= link_to '削除', contact, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></td>
-              </tr>
+              <% if contact.user_name == current_user.user_name %>
+                <tr>
+                  <td><%= contact.id %></td>
+                  <td><%= contact.user_name %></td>
+                  <td><%= contact.contact_user_name %>さん</td>
+                  <td><%= contact.contact_content %></td>
+                  <td><%= link_to '詳細を見る', contact %></td>
+                  <td><%= link_to '削除', contact, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></td>
+                </tr>
+              <% else %>
+              <% end %>
               <% end %>
             </tbody>
           </table>

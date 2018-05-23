@@ -63,18 +63,15 @@
             </thead>
 
             <tbody>
-              <% @contacts.each do |contact| %>
-              <% if contact.contact_user_name == current_user.user_name %>
+              <% @reception_msg.each do |reception_msg| %>
                 <tr>
-                  <td><%= contact.id %></td>
-                  <td><%= contact.user_name %></td>
-                  <td><%= contact.contact_user_name %>さん</td>
-                  <td><%= contact.contact_content %></td>
-                  <td><%= link_to '詳細を見る', contact %></td>
-                  <td><%= link_to '削除', contact, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></td>
+                  <td><%= reception_msg.id %></td>
+                  <td><%= reception_msg.user_name %></td>
+                  <td><%= reception_msg.contact_user_name %>さん</td>
+                  <td><%= reception_msg.contact_content %></td>
+                  <td><%= link_to '詳細を見る', contact_path(reception_msg.id) %></td>
+                  <td><%= link_to '削除', contact_path(reception_msg.id), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></td>
                 </tr>
-              <% else %>
-              <% end %>
               <% end %>
             </tbody>
           </table>
@@ -97,18 +94,15 @@
             </thead>
 
             <tbody>
-              <% @contacts.each do |contact| %>
-              <% if contact.user_name == current_user.user_name %>
+              <% @send_msg.each do |send_msg| %>
                 <tr>
-                  <td><%= contact.id %></td>
-                  <td><%= contact.user_name %></td>
-                  <td><%= contact.contact_user_name %>さん</td>
-                  <td><%= contact.contact_content %></td>
-                  <td><%= link_to '詳細を見る', contact %></td>
-                  <td><%= link_to '削除', contact, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></td>
+                  <td><%= send_msg.id %></td>
+                  <td><%= send_msg.user_name %></td>
+                  <td><%= send_msg.contact_user_name %>さん</td>
+                  <td><%= send_msg.contact_content %></td>
+                  <td><%= link_to '詳細を見る', contact_path(send_msg.id) %></td>
+                  <td><%= link_to '削除', contact_path(send_msg.id), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></td>
                 </tr>
-              <% else %>
-              <% end %>
               <% end %>
             </tbody>
           </table>

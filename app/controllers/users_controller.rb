@@ -5,6 +5,8 @@ class UsersController < ApplicationController
     @q = User.ransack(params[:q])
     @q.sorts = 'id asc' if @q.sorts.empty?
     @users_result = @q.result(distinct: true)
+    @users = User.all
+    # binding.pry
   end
 
   def new
@@ -22,6 +24,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @follow_user = current_user.follow_users_of_from_user.find_by(from_user_id: @user.id)
   end
 
   def edit
@@ -46,7 +49,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:user_id,:user_name,:user_email,
       :user_address,:user_icon,:facebook,:twitter,:instagram,
       :professional,:skill,:hobby,:user_fb_msg,:password,
-      :password_confirmation)
+      :password_confirmation,:favorite_user)
   end
 
   def set_user

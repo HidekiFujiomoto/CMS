@@ -113,6 +113,10 @@
           <% else %>
             <%= link_to 'このメンバーへ問い合わせる',
               new_contact_path(user: @user),class: "btn btn-default" %>
+            <!---
+            <%= link_to 'このメンバーをお気に入りに登録する',
+                follow_users_path(from_user_id: @user.id), method: :post, class: "btn btn-default" %>
+                --->
             <div class="edit_profile_return_member_btn font-blue">
               <%= link_to 'メンバー検索へ戻る', users_path %>
             </div>

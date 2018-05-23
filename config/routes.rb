@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   root to:'sessions#index'
 
   resources :bookmarks, only: [:create, :destroy]
+  resources :follow_users, only: [:create, :destroy]
 
   resources :searchs
 

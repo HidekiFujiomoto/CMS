@@ -4,6 +4,8 @@ class ContactsController < ApplicationController
 
   def index
     @contacts = Contact.all.reverse_order
+    @reception_msg = Contact.where(contact_user_name: current_user.user_name)
+    @send_msg = Contact.where(user_name: current_user.user_name)
   end
 
 

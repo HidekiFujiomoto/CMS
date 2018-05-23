@@ -40,6 +40,13 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_posts, through: :bookmarks, source: :post
 
+  # アソシエーション設定（vs follow_users）
+  has_many :follow_users_of_to_user, class_name: 'FollowUser', foreign_key: 'to_user_id', dependent: :delete_all
+  has_many :friends_of_to_user, through: :follow_users_to_user, source: 'from_user'
+
+  has_many :follow_users_of_from_user, class_name: 'FollowUser', foreign_key: 'from_user_id', dependent: :delete_all
+  has_many :friends_of_from_user, through: :follow_users_from_user, source: 'to_user'
+
   # ImageUploaderの紐付け
   mount_uploader :user_icon, ImageUploader
 

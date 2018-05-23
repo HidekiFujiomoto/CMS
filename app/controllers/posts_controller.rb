@@ -9,7 +9,6 @@ class PostsController < ApplicationController
   def new
     if params[:back]
       @post = Post.new(post_params)
-      @post.post_image_1.retrieve_from_cache! params[:cache][:post_image_1]
     else
       @post = Post.new
       @post.post_user_name = current_user.user_name
@@ -19,8 +18,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-
     @post.post_image_1.retrieve_from_cache! params[:cache][:post_image_1]
+    @post.post_image_2.retrieve_from_cache! params[:cache][:post_image_2]
+    @post.post_image_3.retrieve_from_cache! params[:cache][:post_image_3]
     if @post.save
       redirect_to posts_path, notice:"新規投稿しました！"
     else
@@ -52,7 +52,6 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.post_user_name = current_user.user_name
-    # binding.pry
     render :new if @post.invalid?
   end
 

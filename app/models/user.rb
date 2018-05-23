@@ -18,7 +18,7 @@ class User < ApplicationRecord
     length:  { maximum: 255 }
 
   ### パスワードのバリデーション設定
-  validates :password_digest,
+  validates :password,
     presence: true, length:  { minimum: 6 }, on: :create
   validates :password_digest,
     presence: true, length:  { minimum: 6 }, on: :update, allow_blank: true

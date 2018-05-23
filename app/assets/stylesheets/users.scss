@@ -3,6 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+/*** 共通 ***/
+.return_user{
+  padding-top: 15px;
+  margin-top: 80px;
+  border-top: 1px solid #CCCCCC;
+  text-align: center; }
+
 /*** index.html.erb ***/
 .member_search{
   width: 400px;

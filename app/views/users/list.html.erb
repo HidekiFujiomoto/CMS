@@ -40,49 +40,22 @@
 
         <!--- PageTitle --->
         <div class="page_title">
-          <h3>メンバー検索</h3>
+          <h3>登録ユーザー一覧</h3>
         </div>
-        <!--- 検索フォーム --->
-        <div class="member_search">
-          <table>
-          <%= search_form_for @q do |form| %>
-            <div><tr>
-              <th><%= form.label "①. ユーザー名" %></th>
-              <td><%= form.search_field :user_name_cont %></td></tr>
-            </div>
-            <div><tr>
-              <th><%= form.label "②. 居住地" %></th>
-              <td><%= form.search_field :user_address_cont %></td></tr>
-            </div>
-            <div><tr>
-              <th><%= form.label "③. スキル" %></th>
-              <td><%= form.search_field :skill_cont %></td></tr>
-            </div>
-            <div><tr>
-              <th><%= form.label "④. 趣味、特技" %></th>
-              <td><%= form.search_field :hobby_cont %></td></tr>
-            </div>
-          </table>
-          <div class="member_search_btn">
-            <%= form.submit "検索", class:"btn" %>
-          </div>
-          <% end %>
-        </div> <!--- /member_search --->
 
-        <!--- 検索結果表示 --->
+        <!--- 一覧表示 --->
         <div class="member_search_result">
             <table>
               <thead>
                 <tr>
-                  <th><%= sort_link(@q,:id,"ID", hide_indicator: true) %></th>
-                  <th><%= sort_link(@q,:id,"ユーザー名", hide_indicator: true) %></th>
-                  <th><%= sort_link(@q,:id,"居住地", hide_indicator: true) %></th>
+                  <th>ID</th>
+                  <th>ユーザー名</th>
+                  <th>居住地</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                <% @users_result.each do |user| %>
-                <% next if user.id == current_user.id %>
+                <% @users.each do |user| %>
                 <tr>
                   <td><%= user.id %></td>
                   <td><%= user.user_name %></td>
@@ -95,8 +68,9 @@
           </div> <!--- /member_search_result --->
 
           <div class="return_user font-blue">
-            <%= link_to "登録メンバー一覧はこちら", list_users_path %>
+            <%= link_to "メンバー検索に戻る", users_path %>
           </div>
+
 
       </div> <!-- /main_content --->
     </div> <!-- /content -->

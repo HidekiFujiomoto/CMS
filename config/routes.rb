@@ -6,7 +6,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users do
+    collection do
+      get 'list'
+    end
+  end
+
 
   resources :sessions, only: [:index, :new, :create, :destroy]
   root to:'sessions#index'

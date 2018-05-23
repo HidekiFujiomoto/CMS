@@ -39,6 +39,7 @@ gem 'letter_opener_web'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'rails-i18n'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

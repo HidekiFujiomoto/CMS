@@ -15,11 +15,13 @@
       <p><span class="bold">投稿者：</span>
         <%= @post.post_user_name %></p>
         <%= form.hidden_field :post_user_name %>
-      <p><span class="bold">タイトル：</span>
+    </div>
+    <div class="post_item">
+      <p><span class="bold">タイトル</span>(Post title)<span class="bold">：</span>
         <%= form.text_field :post_title %></p>
     </div>
     <div class="post_item">
-      <%= form.label "投稿内容" %>
+      <span class="bold">投稿内容</span>(Post Content)
       <%= form.text_area :post_content %>
     </div>
     <div class="post_item">
@@ -36,7 +38,7 @@
   </div>
 
   <div class="post_submit_btn">
-    <%= form.submit "投稿を更新する",:class=>"btn" %>
+    <%= form.submit "投稿する",:class=>"btn" %>
   </div>
 
 <% end %>

@@ -23,6 +23,11 @@
             <li><a href="/posts">掲示板</a></li>
             <li><a href="/contacts">メッセージ</a></li>
             <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+            <li>
+              <% if logged_in? %>
+              <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+              <% end %>
+            </li>
           </ul>
         </div>
       </div>  <!--- /container-fluid --->

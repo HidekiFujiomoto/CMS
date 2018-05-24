@@ -31,6 +31,8 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     @contact.user_id = current_user.id
+    @contact.contact_img.retrieve_from_cache! params[:cache][:contact_img] if params[:cache][:contact_img].present?
+
     if @contact.save
       redirect_to contacts_path, notice:"メッセージを送信しました！"
       @user_email = @contact.contact_user_email

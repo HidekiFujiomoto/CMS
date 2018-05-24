@@ -58,8 +58,8 @@
             </div>
             <div class="contact_content">
               <label>添付ファイル</label>
-              <p><%= image_tag @contact.contact_img %></p>
-              <%= hidden_field_tag :"cache[contact_img]",@contact.contact_img.cache_name %>
+              <p><%= image_tag @contact.contact_img %>
+              <%= hidden_field_tag :"cache[contact_img]",@contact.contact_img.cache_name %></p>
             </div>
 
             <div class="contact_send_btn">

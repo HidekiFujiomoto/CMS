@@ -19,16 +19,9 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
 
-    # 画像（post_image_#）がnilのときはキャッシュからの復元処理を飛ばす
-    if @post.post_image_1.present?
-      @post.post_image_1.retrieve_from_cache! params[:cache][:post_image_1]
-    end
-    if @post.post_image_2.present?
-      @post.post_image_2.retrieve_from_cache! params[:cache][:post_image_2]
-    end
-    if @post.post_image_3.present?
-      @post.post_image_3.retrieve_from_cache! params[:cache][:post_image_3]
-    end
+    @post.post_image_1.retrieve_from_cache! params[:cache][:post_image_1] if params[:cache][:post_image_1].present?
+    @post.post_image_2.retrieve_from_cache! params[:cache][:post_image_2] if params[:cache][:post_image_2].present?
+    @post.post_image_3.retrieve_from_cache! params[:cache][:post_image_3] if params[:cache][:post_image_3].present?
 
     if @post.save
       redirect_to posts_path, notice:"新規投稿しました！"

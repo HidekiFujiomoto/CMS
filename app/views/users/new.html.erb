@@ -20,10 +20,10 @@
           <h3>新規ユーザー登録</h3>
         </div>
 
-        <div>
+        <div class="error_content">
           <% if @user.errors.any? %>
             <div id="error_explanation">
-              <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+              <h2><%= pluralize(@user.errors.count, "つのエラー") %> により新規ユーザー登録できません:</h2>
               <ul>
                 <% @user.errors.full_messages.each do |message| %>
                   <li><%= message %></li>

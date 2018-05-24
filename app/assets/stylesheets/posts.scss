@@ -27,10 +27,10 @@
   width: 50px;
   object-fit: contain; }
 
-.post_btn td{
+.post_index_space td{
   padding-bottom: 15px; }
 
-.post_btn{
+.post_index_space{
   border-bottom: 2px solid #f8f8ff; }
 
 .post_detail_btn a{
@@ -55,6 +55,9 @@
 
 .post_title input{
   width: 80%; }
+
+.post_text_field{
+  width: 100%; }
 
 .post_item textarea{
   width: 100%;

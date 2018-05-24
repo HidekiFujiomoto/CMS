@@ -70,7 +70,7 @@
 
               <!--- ユーザーIDが一致した場合のみ「編集」と「削除」が可能 --->
               <% if post.user_id == current_user.id %>
-                <tr class="post_content post_btn">
+                <tr class="post_content post_index_space">
                   <td>
                     <%= link_to "編集する", edit_post_path(post.id) ,class: "btn btn-default col-md-6 col-xs-12" %>
                     <%= link_to '削除する', post_path(post.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } ,class: "btn btn-default col-md-6 col-xs-12" %>
@@ -78,7 +78,7 @@
                 </tr>
               <% else %>
               <% end %> <!--- /"if post.user_id == current_user.id" --->
-
+              <tr><td></td></tr>
             <% end %> <!--- /"@posts.each do |post|" --->
           </table>
         </div>

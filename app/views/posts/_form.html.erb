@@ -1,5 +1,6 @@
 <%= form_with(model: @post, local: true, url: choose_new_or_edit) do |form| %>
   <% if @post.errors.any? %>
+  <div class="error_content">
     <div id="error_explanation">
       <h2><%= @post.errors.count %>件のエラーがあります。</h2>
       <ul>
@@ -8,6 +9,7 @@
         <% end %>
       </ul>
     </div>
+  </div>
   <% end %>
 
   <div class="post_new_index">
@@ -17,11 +19,11 @@
         <%= form.hidden_field :post_user_name %>
     </div>
     <div class="post_item">
-      <p><span class="bold">タイトル</span>(Post title)<span class="bold">：</span>
-        <%= form.text_field :post_title %></p>
+      <p><span class="bold">タイトル</span>
+        <%= form.text_field :post_title,class:"post_text_field" %></p>
     </div>
     <div class="post_item">
-      <span class="bold">投稿内容</span>(Post Content)
+      <span class="bold">投稿内容</span>
       <%= form.text_area :post_content %>
     </div>
     <div class="post_item">

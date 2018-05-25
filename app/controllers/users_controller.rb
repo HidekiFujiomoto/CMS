@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only:[:show,:edit,:update]
+  before_action :set_user, only:[:show,:edit,:update,:destroy]
 
   def index
     @q = User.ransack(params[:q])
@@ -36,6 +36,11 @@ class UsersController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to new_user_path, notice:"アカウントを削除しました！"
   end
 
   def list

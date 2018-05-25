@@ -46,45 +46,38 @@
       <div class="post_index">
         <div class="row">
           <table>
-            <% @posts.each do |post| %>
-            <% if post.id == @bookmarks.find(:post_id) %>
+            <% current_user.bookmarks.each do |bookmark| %>
+
               <!--- 投稿内容 --->
               <tr class="post_content">
-                <td>投稿者：<%= post.post_user_name %></td> <!--- あとでpost.user_nameへ修正 --->
+                <td>投稿者：<%= bookmark.post.post_user_name %></td> <!--- あとでpost.user_nameへ修正 --->
               </tr>
               <tr class="post_content bold">
-                <td>タイトル：<%= post.post_title %></td>
+                <td>タイトル：<%= bookmark.post.post_title %></td>
               </tr>
               <tr class="post_content">
-                <td><%= post.post_content %></td>
+                <td><%= bookmark.post.post_content %></td>
               </tr>
               <tr class="post_content">
                 <td>
-                  <%= image_tag post.post_image_1 %>
-                  <%= image_tag post.post_image_2 %>
-                  <%= image_tag post.post_image_3 %>
+                  <%= image_tag bookmark.post.post_image_1 %>
+                  <%= image_tag bookmark.post.post_image_2 %>
+                  <%= image_tag bookmark.post.post_image_3 %>
                 </td>
               </tr>
               <!--- 詳細ボタン --->
               <tr class="post_content font-blue">
-                <td><%= link_to "詳細を見る", post_path(post.id) %></td>
+                <td><%= link_to "詳細を見る", post_path(bookmark.post.id) %></td>
               </tr>
 
-
               <tr><td></td></tr>
-              <% end %>
+
             <% end %> <!--- /"@posts.each do |post|" --->
           </table>
         </div> <!--- row --->
 
-        <div class="new_post_btn">
-          <div class="btn-group">
-            <%= link_to '新しく投稿する', new_post_path ,class: "btn btn-default" %>
-          </div>
-        </div>
-
         <div class="return_user font-blue">
-          <%= link_to "お気に入り投稿一覧はこちら", list_users_path %>
+          <%= link_to "掲示板に戻る", posts_path %>
         </div>
       </div> <!--- post_index --->
 

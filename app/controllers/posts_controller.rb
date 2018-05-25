@@ -58,8 +58,6 @@ class PostsController < ApplicationController
   end
 
   def list
-    @posts = Post.all
-    @bookmarks = Bookmark.all
   end
 
 

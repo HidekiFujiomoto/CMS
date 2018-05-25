@@ -57,6 +57,13 @@ class PostsController < ApplicationController
     render :new if @post.invalid?
   end
 
+  def list
+    @posts = Post.all
+    @bookmarks = Bookmark.all
+  end
+
+
+
   private
   def post_params
     params.require(:post).permit(:post_id,:post_title, :post_content,

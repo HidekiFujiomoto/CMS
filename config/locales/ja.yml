@@ -12,3 +12,5 @@ ja:
         user_email: E-mail
         password: パスワード
         Password_confirmation: パスワードの確認
+      contact:
+        contact_content: 問い合わせ内容

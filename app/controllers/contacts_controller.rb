@@ -60,6 +60,7 @@ class ContactsController < ApplicationController
   def confirm
     @contact = Contact.new(contact_params)
     @contact.user_id = current_user.id
+    render :new if @contact.invalid?
   end
 
 

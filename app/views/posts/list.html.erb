@@ -39,13 +39,15 @@
 
       <!--- PageTitle --->
       <div class="page_title">
-        <h3>掲示板</h3>
+        <h3>お気に入り投稿一覧</h3>
       </div>
+
 
       <div class="post_index">
         <div class="row">
           <table>
             <% @posts.each do |post| %>
+            <% if post.id == @bookmarks.find(:post_id) %>
               <!--- 投稿内容 --->
               <tr class="post_content">
                 <td>投稿者：<%= post.post_user_name %></td> <!--- あとでpost.user_nameへ修正 --->
@@ -68,20 +70,12 @@
                 <td><%= link_to "詳細を見る", post_path(post.id) %></td>
               </tr>
 
-              <!--- ユーザーIDが一致した場合のみ「編集」と「削除」が可能 --->
-              <% if post.user_id == current_user.id %>
-                <tr class="post_content post_index_space">
-                  <td>
-                    <%= link_to "編集する", edit_post_path(post.id) ,class: "btn btn-default col-md-6 col-xs-12" %>
-                    <%= link_to '削除する', post_path(post.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } ,class: "btn btn-default col-md-6 col-xs-12" %>
-                  </td>
-                </tr>
-              <% else %>
-              <% end %> <!--- /"if post.user_id == current_user.id" --->
+
               <tr><td></td></tr>
+              <% end %>
             <% end %> <!--- /"@posts.each do |post|" --->
           </table>
-        </div>
+        </div> <!--- row --->
 
         <div class="new_post_btn">
           <div class="btn-group">
@@ -90,9 +84,9 @@
         </div>
 
         <div class="return_user font-blue">
-          <%= link_to "お気に入り投稿一覧はこちら", list_posts_path %>
+          <%= link_to "お気に入り投稿一覧はこちら", list_users_path %>
         </div>
-
+      </div> <!--- post_index --->
 
       </div> <!-- /main_content --->
     </div> <!-- /content -->

@@ -6,7 +6,6 @@ class UsersController < ApplicationController
     @q.sorts = 'id asc' if @q.sorts.empty?
     @users_result = @q.result(distinct: true)
     @users = User.all
-    # binding.pry
   end
 
   def new
